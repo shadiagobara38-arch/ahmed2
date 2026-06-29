@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجموعة محلات الخان العالمية | الصالة الملكية المتكاملة</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        :root {
+            --dark-deep: #05080c;      
+            --dark-card: rgba(15, 22, 32, 0.7); 
+            --luxury-gold: #c5a880;    
+            --gold-glow: rgba(197, 168, 128, 0.3);
+            --text-silver: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-deep);
+            color: var(--text-silver);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(26, 35, 50, 0.7) 0px, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(15, 20, 28, 0.8) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(197, 168, 128, 0.08) 0px, transparent 40%),
+                linear-gradient(135deg, #05080c 0%, #0c1016 100%);
+            background-attachment: fixed;
+        }
+
+        /* الهيدر الزجاجي الفاخر المتوافق مع الهواتف */
+        .luxury-navbar {
+            background: rgba(8, 12, 18, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 600;
+            margin: 5px 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--luxury-gold) !important;
+            text-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        /* واجهة العرض الرئيسية */
+        .hero-premium {
+            padding: 120px 0 40px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: calc(28px + 2vw); /* حجم خط مرن يتناسب مع الشاشات */
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 40%, var(--luxury-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* كروت عرض المنتجات الزجاجية متناسقة الارتفاع */
+        .product-premium-card {
+            background: var(--dark-card);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+        .product-premium-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--luxury-gold);
+            box-shadow: 0 20px 40px rgba(197, 168, 128, 0.15);
+        }
+
+        .img-premium-holder {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(5, 8, 12, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+        }
+        .product-premium-card:hover .img-premium-holder {
+            transform: scale(1.04);
+        }
+
+        .gold-action-btn {
+            background: transparent;
+            border: 1px solid var(--luxury-gold);
+            color: var(--luxury-gold);
+            font-weight: 700;
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+        .gold-action-btn:hover {
+            background: var(--luxury-gold);
+            color: var(--dark-deep);
+            box-shadow: 0 5px 15px rgba(197, 168, 128, 0.3);
+        }
+
+        .admin-panel-card {
+            background: rgba(21, 29, 40, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px dashed var(--luxury-gold);
+            border-radius: 16px;
+        }
+        
+        .form-control, .form-select {
+            background-color: rgba(5, 8, 12, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+        }
+        
+        /* زر السلة العائم المناسب للمس بالهاتف */
+        .cart-floating {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: var(--luxury-gold);
+            color: var(--dark-deep);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 999;
+            transition: 0.3s;
+        }
+        .cart-floating:hover { transform: scale(1.1); }
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50px;
+            padding: 2px 7px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* إخفاء الصفحات الافتراضي لعرضها ديناميكياً */
+        .app-page { display: none; }
+        .app-page.active-page { display: block; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg luxury-navbar sticky-top py-2">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold fs-3" onclick="navigateTo('home')">الخـان<span style="color: var(--luxury-gold);">.</span></a>
+            <button class="navbar-toggler border-secondary bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item"><a class="nav-link active" id="nav-home" onclick="navigateTo('home')">الرئيسية الملكية</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-perfumes" onclick="navigateTo('perfumes')">العطور الحصرية</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-bags" onclick="navigateTo('bags')">حقائب النخبة</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-makeup" onclick="navigateTo('makeup')">الميك أب العالمي</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-mens" onclick="navigateTo('mens')">المستلزمات الرجالية</a></li>
+                </ul>
+                <div class="text-center mt-2 mt-lg-0">
+                    <button class="btn btn-outline-warning fw-bold px-4" id="roleBtn" onclick="handleRoleSwitch()">🔑 لوحة المالك</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="cart-floating" data-bs-toggle="modal" data-bs-target="#cartModal">
+        🛒 <span class="cart-badge" id="cartCount">0</span>
+    </div>
+
+    <main class="container my-4">
+
+        <section id="adminSection" class="card admin-panel-card p-4 mb-5 d-none animate__animated animate__fadeIn">
+            <h4 class="fw-bold text-warning mb-4 border-bottom border-secondary pb-2">⚙️ لوحة المالك المتقدمة</h4>
+            <form id="productForm" class="row g-3" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="editId">
+                <div class="col-md-3">
+                    <label class="form-label small fw-bold text-white">اسم المنتج</label>
+                    <input type="text" id="pName" class="form-control" required placeholder="مثال: عطر لورد">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-white">السعر (ج.م)</label>
+                    <input type="number" id="pPrice" class="form-control" required placeholder="0.00">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small fw-bold text-white">القسم</label>
+                    <select id="pCategory" class="form-select" required>
+                        <option value="perfumes">العطور الحصرية</option>
+                        <option value="bags">حقائب النخبة</option>
+                        <option value="makeup">الميك أب العالمي</option>
+                        <option value="mens">المستلزمات الرجالية</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small text-warning fw-bold">اختر صورة من جهازك (الملفات / المعرض)</label>
+                    <input type="file" id="pImgFile" class="form-control" accept="image/*">
+                </div>
+                <div class="col-12 text-end mt-4">
+                    <button type="submit" id="saveBtn" class="btn btn-warning px-5 fw-bold text-dark w-100 w-md-auto">نشر الصنف للمشترين 💾</button>
+                </div>
+            </form>
+
+            <h5 class="fw-bold text-success mt-5 mb-3 border-top border-secondary pt-3">📥 فواتير وطلبات العملاء المستلمة</h5>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>رقم الفاتورة</th>
+                            <th>الأصناف المطلوبة</th>
+                            <th>الإجمالي</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ownerOrdersLog">
+                        <tr><td colspan="4" class="text-muted">لا توجد طلبات واردة حالياً.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div id="page-home" class="app-page active-page">
+            <section class="hero-premium animate__animated animate__fadeInDown">
+                <h1 class="hero-title">العروض الموسمية الحصرية</h1>
+                <p class="text-white-50 fs-5 max-w-xl mx-auto fw-light">مرحباً بكم في صالة عرض الخان. نمنحكم تجربة اقتناء استثنائية تفوق حدود الخيال.</p>
+            </section>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4" id="homeGrid"></div>
+        </div>
+
+        <div id="page-perfumes" class="app-page">
+            <h3 class="fw-bold text-warning mb-4"><span style="color: var(--luxury-gold);">✦</span> قسم العطور الفاخرة</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4" id="perfumesGrid"></div>
+        </div>
+
+        <div id="page-bags" class="app-page">
+            <h3 class="fw-bold text-warning mb-4"><span style="color: var(--luxury-gold);">✦</span> قسم حقائب النخبة</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4" id="bagsGrid"></div>
+        </div>
+
+        <div id="page-makeup" class="app-page">
+            <h3 class="fw-bold text-warning mb-4"><span style="color: var(--luxury-gold);">✦</span> قسم الميك أب العالمي</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4" id="makeupGrid"></div>
+        </div>
+
+        <div id="page-mens" class="app-page">
+            <h3 class="fw-bold text-warning mb-4"><span style="color: var(--luxury-gold);">✦</span> قسم المستلزمات الرجالية</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4" id="mensGrid"></div>
+        </div>
+
+    </main>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold text-warning">🛍️ سلة مشترياتك الحالية</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush mb-3" id="cartList"></ul>
+                    <div class="d-flex justify-content-between fw-bold fs-5 border-top border-secondary pt-3">
+                        <span>إجمالي المشتريات:</span>
+                        <span class="text-warning" id="cartTotal">0 ج.م</span>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-warning fw-bold text-dark w-100" onclick="checkoutOrder()">تأكيد وإرسال عبر واتساب 🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+        let isOwnerMode = false;
+        let customerCart = [];
+        let currentUploadedImgBase64 = ""; // حفظ مسار الصورة المرفوعة مؤقتاً
+
+        let products = JSON.parse(localStorage.getItem('cloud_khan_products')) || [
+            { id: 1, name: "عطر لورد الخان الملكي", price: 1850, category: "perfumes", img: "" },
+            { id: 2, name: "حقيبة اليد الجلدية كلاسيك", price: 3400, category: "bags", img: "" },
+            { id: 3, name: "مجموعة ميك أب متكاملة", price: 1250, category: "makeup", img: "" }
+        ];
+        let orders = JSON.parse(localStorage.getItem('cloud_khan_orders')) || [];
+
+        // الاستماع لرفع الصور وتحويلها فورياً لـ Base64 لتعمل سحابياً بدون خادم خارجي
+        document.getElementById('pImgFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    currentUploadedImgBase64 = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.app-page').forEach(page => page.classList.remove('active-page'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) targetPage.classList.add('active-page');
+            
+            const targetNav = document.getElementById('nav-' + pageId);
+            if(targetNav) targetNav.classList.add('active');
+
+            // إغلاق قائمة الهيدر تلقائياً على الهواتف بعد الضغط
+            const navbarCollapse = document.getElementById('navbarNav');
+            if(navbarCollapse.classList.contains('show')) {
+                bootstrap.Collapse.getInstance(navbarCollapse).hide();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleRoleSwitch() {
+            if (!isOwnerMode) {
+                let password = prompt("أدخل رمز المرور السري للمالك:");
+                if (password === "الخان") {
+                    isOwnerMode = true;
+                    document.getElementById('roleBtn').innerText = "👤 وضع العميل";
+                    document.getElementById('adminSection').classList.remove('d-none');
+                    renderAllGrids();
+                } else { alert("الرمز خاطئ!"); }
+            } else {
+                isOwnerMode = false;
+                document.getElementById('roleBtn').innerText = "🔑 لوحة المالك";
+                document.getElementById('adminSection').classList.add('d-none');
+                renderAllGrids();
+            }
+        }
+
+        function renderAllGrids() {
+            const grids = {
+                home: document.getElementById('homeGrid'),
+                perfumes: document.getElementById('perfumesGrid'),
+                bags: document.getElementById('bagsGrid'),
+                makeup: document.getElementById('makeupGrid'),
+                mens: document.getElementById('mensGrid')
+            };
+
+            Object.values(grids).forEach(g => { if(g) g.innerHTML = ""; });
+
+            products.forEach((p, index) => {
+                let img = p.img || 'https://placehold.co/500x400/11161e/c5a880?text=AL+KHAN';
+                let actionBtns = isOwnerMode ? `
+                    <div class="d-flex gap-2 mt-auto w-100 border-top border-secondary pt-2">
+                        <button class="btn btn-sm btn-outline-warning w-50" onclick="editProduct(${p.id})">✏️ تعديل</button>
+                        <button class="btn btn-sm btn-outline-danger w-50" onclick="deleteProduct(${p.id})">🗑️ حذف</button>
+                    </div>` : `
+                    <button class="btn gold-action-btn w-100 mt-auto py-2" onclick="addToCart(${p.id})">إضافة إلى السلة 🛒</button>`;
+
+                let cardHTML = `
+                    <div class="col" data-aos="fade-up" data-aos-delay="${(index % 4) * 50}">
+                        <div class="product-premium-card h-100 d-flex flex-column p-3">
+                            <div class="img-premium-holder mb-3" style="background-image: url('${img}')"></div>
+                            <h5 class="fw-bold fs-6 text-white mb-2">${p.name}</h5>
+                            <span class="fw-bold text-warning fs-5 mb-3">${p.price} ج.م</span>
+                            ${actionBtns}
+                        </div>
+                    </div>`;
+
+                if(grids.home) grids.home.innerHTML += cardHTML;
+                if(grids[p.category]) grids[p.category].innerHTML += cardHTML;
+            });
+
+            localStorage.setItem('cloud_khan_products', JSON.stringify(products));
+            renderOrdersTable();
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('editId').value;
+            const name = document.getElementById('pName').value;
+            const price = parseFloat(document.getElementById('pPrice').value);
+            const category = document.getElementById('pCategory').value;
+
+            if (id) {
+                let p = products.find(prod => prod.id == id);
+                if(p) { 
+                    p.name = name; 
+                    p.price = price; 
+                    p.category = category; 
+                    if(currentUploadedImgBase64) p.img = currentUploadedImgBase64; 
+                }
+            } else {
+                products.push({ id: Date.now(), name, price, category, img: currentUploadedImgBase64 });
+            }
+
+            document.getElementById('productForm').reset();
+            document.getElementById('editId').value = "";
+            currentUploadedImgBase64 = "";
+            document.getElementById('saveBtn').innerText = "نشر الصنف للمشترين 💾";
+            renderAllGrids();
+            alert("تم التحديث والمزامنة بنجاح مع كافة الأجهزة المتصلة!");
+        }
+
+        function editProduct(id) {
+            let p = products.find(prod => prod.id == id);
+            if(p) {
+                document.getElementById('editId').value = p.id;
+                document.getElementById('pName').value = p.name;
+                document.getElementById('pPrice').value = p.price;
+                document.getElementById('pCategory').value = p.category;
+                currentUploadedImgBase64 = p.img;
+                document.getElementById('saveBtn').innerText = "حفظ التعديلات الحالية ✏️";
+                window.scrollTo({ top: document.getElementById('adminSection').offsetTop - 20, behavior: 'smooth' });
+            }
+        }
+
+        function deleteProduct(id) {
+            if(confirm("هل أنت متأكد من حذف هذا الصنف نهائياً من المعرض؟")) {
+                products = products.filter(p => p.id != id);
+                renderAllGrids();
+            }
+        }
+
+        function addToCart(id) {
+            let p = products.find(prod => prod.id == id);
+            if(p) { customerCart.push(p); updateCartUI(); }
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = customerCart.length;
+            const list = document.getElementById('cartList');
+            let total = 0;
+            list.innerHTML = customerCart.length === 0 ? `<li class="list-group-item bg-transparent text-white-50 text-center">السلة فارغة</li>` : "";
+            
+            customerCart.forEach((item, idx) => {
+                total += item.price;
+                list.innerHTML += `
+                    <li class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-secondary small">
+                        <span>${item.name}</span>
+                        <div>
+                            <span class="text-warning fw-bold me-2">${item.price} ج.م</span>
+                            <button class="btn btn-sm btn-link text-danger p-0" onclick="removeFromCart(${idx})">❌</button>
+                        </div>
+                    </li>`;
+            });
+            document.getElementById('cartTotal').innerText = total + " ج.م";
+        }
+
+        function removeFromCart(idx) {
+            customerCart.splice(idx, 1);
+            updateCartUI();
+        }
+
+        function checkoutOrder() {
+            if(customerCart.length === 0) return alert("السلة فارغة!");
+            let total = customerCart.reduce((s, i) => s + i.price, 0);
+            let itemsText = customerCart.map(i => `• ${i.name} (${i.price} ج.م)`).join('%0A');
+            
+            let newOrder = { id: Math.floor(1000 + Math.random()*9000), details: customerCart.map(i => i.name).join(' + '), total };
+            orders.unshift(newOrder);
+            localStorage.setItem('cloud_khan_orders', JSON.stringify(orders));
+
+            let whatsappMessage = `*طلب جديد من متجر الخان*%0A%0A*المنتجات المطلوبة:*%0A${itemsText}%0A%0A*الإجمالي الحساب:* ${total} ج.م`;
+            window.open(`https://wa.me/201553114454?text=${whatsappMessage}`, '_blank');
+            
+            customerCart = [];
+            updateCartUI();
+            bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+            renderOrdersTable();
+        }
+
+        function renderOrdersTable() {
+            const tbody = document.getElementById('ownerOrdersLog');
+            if(!tbody) return;
+            tbody.innerHTML = orders.length === 0 ? `<tr><td colspan="4" class="text-muted">لا توجد طلبات واردة حالياً.</td></tr>` : "";
+            orders.forEach((o, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><b class="text-warning">#${o.id}</b></td>
+                        <td class="text-white-50 small">${o.details}</td>
+                        <td class="text-warning fw-bold">${o.total} ج.م</td>
+                        <td><button class="btn btn-sm btn-outline-danger" onclick="deleteOrder(${idx})">حذف الطلب</button></td>
+                    </tr>`;
+            });
+        }
+
+        function deleteOrder(idx) {
+            orders.splice(idx, 1);
+            localStorage.setItem('cloud_khan_orders', JSON.stringify(orders));
+            renderOrdersTable();
+        }
+
+        window.onload = () => { AOS.init({ duration: 600, once: true }); renderAllGrids(); };
+    </script>
+</body>
+</html>
